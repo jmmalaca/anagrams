@@ -4,7 +4,8 @@ const WORDSFILE = "english-words.txt";
 //const WORDSFILE = "test-words.txt";
 const TIMERNAME = "timer";
 
-var anagramsWords = [];
+var anagramsWords = {};
+//var anagramsWords = []
 
 var readWords = function() {
 	try {
@@ -32,17 +33,18 @@ var anagrams = function(wordsAvailable, searchWord) {
 	});
 }
 
-var anagrams_v2 = function(wordsAvailable, searchWord, index, result) {
-	if (index < wordsAvailable.length) {
-		result = anagrams_v2(wordsAvailable, searchWord, index +1, result);
-
-		//console.log(wordsAvailable + " > " +searchWord + " > " + index + " > " + result)
-		if (checkChars(wordsAvailable[index], searchWord.split(''), 0)) {
-			result.push(wordsAvailable[index]);
-			return result;
+var anagrams_v2 = function(wordsAvailable, searchWord) {
+	if (wordsAvailable[searchWord].length !== 0) return wordsAvailable[searchWord]
+	Object.keys(wordsAvailable).forEach(function(key_word) {
+		if (checkChars(key_word, searchWord.split(''),0)) {
+			if (wordsAvailable[searchWord].indexOf(key_word) < 0) {
+				wordsAvailable[searchWord].push(key_word)
+			}
+			if (wordsAvailable[key_word].indexOf(searchWord) < 0) {
+				wordsAvailable[key_word].push(searchWord)
+			}
 		}
-	}
-	return result;
+	})
 }
 
 // Lets get started
@@ -55,9 +57,12 @@ var wordsAvailable = readWords();
 if (searchOrTest === "test"){//search anagrams for all words
 	console.time(TIMERNAME);
 	wordsAvailable.map(function(word, index, array){
-		anagramsWords.push(word);
-		var result = anagrams(anagramsWords, word);
-		console.log('Anagrams of ' + word + " are " + result);
+		//anagramsWords.push(word);
+		//var result = anagrams(anagramsWords, word);
+		//console.log('Anagrams of ' + word + ' are ' + result);
+		anagramsWords[word] = []
+		anagrams_v2(anagramsWords, word)
+		console.log('Anagrams of ' + word + ' are ' + anagramsWords[word])
 	});
 	console.timeEnd(TIMERNAME);
 } else if(searchOrTest === "search" && searchWord.length > 0) {//search anagram for an given word
