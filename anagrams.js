@@ -1,11 +1,8 @@
 var fs = require('fs');
 
-const WORDSFILE = "english-words.txt";
-//const WORDSFILE = "test-words.txt";
+//const WORDSFILE = "english-words.txt";
+const WORDSFILE = "test-words.txt";
 const TIMERNAME = "timer";
-
-var anagramsWords = {};
-//var anagramsWords = []
 
 var readWords = function() {
 	try {
@@ -47,6 +44,10 @@ var anagrams_v2 = function(wordsAvailable, searchWord) {
 	})
 }
 
+var anagrams_v3 = function(wordsAvailable, searchWord) {
+	
+}
+
 // Lets get started
 var args = process.argv.slice(2, 4);
 var searchOrTest = args[0];
@@ -55,13 +56,18 @@ var searchWord = args[1];
 var wordsAvailable = readWords();
 
 if (searchOrTest === "test"){//search anagrams for all words
+	var anagramsWords = {};
+	//var anagramsWords = []
+
 	console.time(TIMERNAME);
 	wordsAvailable.map(function(word, index, array){
 		//anagramsWords.push(word);
 		//var result = anagrams(anagramsWords, word);
 		//console.log('Anagrams of ' + word + ' are ' + result);
+
 		anagramsWords[word] = []
-		anagrams_v2(anagramsWords, word)
+		//anagrams_v2(anagramsWords, word)
+		anagrams_v3(anagramsWords, word)
 		console.log('Anagrams of ' + word + ' are ' + anagramsWords[word])
 	});
 	console.timeEnd(TIMERNAME);
