@@ -7,10 +7,10 @@
 
 **Anagram** > another english word with the same word length, same word letters with different order.
 
-Node.js is an interesting technology. Being built on top of Google’s V8 engine allows for a lot benefits 
-when it comes to JavaScript interpretation. The most obvious being the efficient running of server-side logic. 
-However, one aspect that is often overlooked is the very basic fact that (at its core) Node.js simply 
-interprets and runs JavaScript code. No one said we had to use Node.js to run a server. We can easily use the 
+Node.js is an interesting technology. Being built on top of Google’s V8 engine allows for a lot benefits
+when it comes to JavaScript interpretation. The most obvious being the efficient running of server-side logic.
+However, one aspect that is often overlooked is the very basic fact that (at its core) Node.js simply
+interprets and runs JavaScript code. No one said we had to use Node.js to run a server. We can easily use the
 Node.js core modules to create this anagrams project.
 
 This one uses the english-words txt file containing **355k** English words.
@@ -19,7 +19,7 @@ To search for anagrams for an given word just do:
 ````bash
 node anagrams.js search <word>
 ````
-To find anagrams for every english word available do:
+To test it:
 ````bash
 node anagrams.js test
 ````
@@ -49,4 +49,5 @@ timer: 3955925ms
 
 **Results**
 To search for an anagram, 50 ms is accpetable (well why not, its fast) and there is no probem with this however, scanning for
-anagrams for **355k** words is took 3955925ms = 3955s = 65m and this is very slooowww
+anagrams for **355k** words is took 3955925ms = 3955s = 65m and this is very slooowww...
+Having some battles... even with a solution v2 that in the end wasn't good... the version 3 just go for all the words available and the time is great, 15 seconds. Cool. This v3 solution is awesome.
